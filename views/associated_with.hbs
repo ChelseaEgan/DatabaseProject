@@ -1,0 +1,65 @@
+<!-------------------------------
+    NAVIGATION BAR
+-------------------------------->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">The Stormlight Archives</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Characters</a></li>
+      <li><a href="/spren">Spren</a></li>
+      <li><a href="/knightsradiant">Knights_Radiant</a></li>
+      <li><a href="/surges">Surges</a></li>
+      <li><a href="/performs">Characters Perform Surges</a></li>
+      <li class="active"><a href="/associated_with">Knights Radiant Associated With Surges</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-------------------------------
+    ADD NEW ASSOCIATION
+-------------------------------->
+<h1>Add a new surge associated with the Knights Radiant</h1>
+<form class="form-inline" id="addassociation" action="/associated_with/insert" method="get">
+  <div class="form-group">
+    <label for="orderfk">Knights Radiant Order:</label>
+    <select class="form-control" name="orderfk">
+      {{#each order}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <label for="surgefk">Surge:</label>
+    <select class="form-control" name="surgefk">
+      {{#each surge}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" form="addassociation" name="submit" class="submit action-button" value="Submit" />
+  </div>
+</form>
+
+<!-------------------------------
+    LIST ALL ASSOCIATIONS
+-------------------------------->
+<h1>All surges associated with the Knights Radiant</h1>
+{{#if associated_with}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Knights Radiant</th>
+      <th>Surge</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each associated_with}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{surge}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<h3>No orders or surges in table</h3>
+{{/if}}

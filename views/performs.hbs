@@ -1,0 +1,89 @@
+<!-------------------------------
+    NAVIGATION BAR
+-------------------------------->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">The Stormlight Archives</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Characters</a></li>
+      <li><a href="/spren">Spren</a></li>
+      <li><a href="/knightsradiant">Knights_Radiant</a></li>
+      <li><a href="/surges">Surges</a></li>
+      <li class="active"><a href="/performs">Characters Perform Surges</a></li>
+      <li><a href="/associated_with">Knights Radiant Associated With Surges</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-------------------------------
+    ADD NEW PERFORMS
+-------------------------------->
+<h1>Add a new character that performs a surge</h1>
+<form class="form-inline" action="/action_page.php">
+  <div class="form-group">
+    <label for="character">Character's Name:</label>
+    <input type="text" class="form-control" id="character">
+  </div>
+  <div class="form-group">
+    <label for="surge">Surge:</label>
+    <input type="text" class="form-control" id="surge">
+  </div>
+  <div class="form-group">
+    <input type="submit" form="msform" name="submit" class="submit action-button" value="Submit" />
+  </div>
+</form>
+
+<!-------------------------------
+    LIST ALL PERFORMS
+-------------------------------->
+<h1>All characters that perform surges</h1>
+<h4>Filter</h4>
+<form class="form-inline" action="/action_page.php">
+  <div class="form-group">
+    <label for="charSearch">Search by character's name:</label>
+    <select class="form-control" id="charSearch">
+      {{#each characters}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="surgeSearch">Search by surge's name:</label>
+    <select class="form-control" id="surgeSearch">
+      {{#each surges}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</form>
+{{#if performs}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Character's Name</th>
+      <th>Surge</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each performs}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{surge}}</td>
+      <td>
+        <form class="form-inline" id="deletePerforms" action="/delete" method="get">
+          <div class="form-group">
+            <input type="hidden" name="characterID" value="{{characterID}}"/>
+            <input type="hidden" name="surgeID" value="{{surgeID}}"/>
+            <input type="submit" form="deletePerforms" name="submit" class="submit action-button" value="Delete" />
+          </div>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<h3>No characters or surges in table</h3>
+{{/if}} 

@@ -1,0 +1,55 @@
+<!-------------------------------
+    NAVIGATION BAR
+-------------------------------->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">The Stormlight Archives</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Characters</a></li>
+      <li><a href="/spren">Spren</a></li>
+      <li><a href="/knightsradiant">Knights_Radiant</a></li>
+      <li class="active"><a href="/surges">Surges</a></li>
+      <li><a href="/performs">Characters Perform Surges</a></li>
+      <li><a href="/associated_with">Knights Radiant Associated With Surges</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-------------------------------
+    ADD NEW SURGES
+-------------------------------->
+<h1>Add a new surge</h1>
+<form class="form-inline" action="/action_page.php">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name">
+  </div>
+  <div class="form-group">
+    <input type="submit" form="msform" name="submit" class="submit action-button" value="Submit" />
+  </div>
+</form>
+
+<!-------------------------------
+    LIST ALL SURGES
+-------------------------------->
+<h1>All surges</h1>
+{{#if surges}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each surges}}
+    <tr>
+      <td>{{name}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<h3>No surges in table</h3>
+{{/if}}

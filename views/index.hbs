@@ -1,0 +1,103 @@
+<!-------------------------------
+    NAVIGATION BAR
+-------------------------------->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">The Stormlight Archives</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Characters</a></li>
+      <li><a href="/spren">Spren</a></li>
+      <li><a href="/knightsradiant">Knights_Radiant</a></li>
+      <li><a href="/surges">Surges</a></li>
+      <li><a href="/performs">Characters Perform Surges</a></li>
+      <li><a href="/associated_with">Knights Radiant Associated With Surges</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-------------------------------
+    ADD NEW CHARACTER
+-------------------------------->
+<h1>Add a new character</h1>
+<form class="form-inline" id="addcharacter" action="/insert" method="get">
+  <div class="form-group">
+    <label for="fname">First name:</label>
+    <input type="text" class="form-control" name="fname">
+    <label for="lname">Last name:</label>
+    <input type="text" class="form-control" name="lname">
+    <label for="gender">Gender:</label>
+    <select class="form-control" name="gender">
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other/Unknown</option>
+    </select>
+    <label for="nationality">Nationality:</label>
+    <select class="form-control" name="nationality">
+      <option>Alethi</option>
+      <option>Veden</option>
+      <option>Shin</option>
+      <option>Reshi</option>
+      <option>Kharbranthian</option>
+      <option>Other/Unknown</option>
+    </select>
+    <label for="eyecolor">Eye Color:</label>
+    <select class="form-control" name="eyecolor">
+      <option>Lighteyed</option>
+      <option>Darkeyed</option>
+      <option>Other/Unknown</option>
+    </select>
+    <label for="spren">Spren:</label>
+    <select class="form-control" name="sprenfk">
+      {{#each spren}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <label for="knights">Knights Radiant:</label>
+    <select class="form-control" name="orderfk">
+      {{#each order}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" form="addcharacter" name="submit" class="submit action-button" value="Submit" />
+  </div>
+</form>
+
+<!-------------------------------
+    LIST ALL CHARACTERS
+-------------------------------->
+<h1>All characters</h1>
+{{#if characters}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Nationality</th>
+      <th>Eye Color</th>
+      <th>Spren</th>
+      <th>Knights Radiant</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each characters}}
+    <tr>
+      <td>{{fname}}</td>
+      <td>{{lname}}</td>
+      <td>{{gender}}</td>
+      <td>{{nationality}}</td>
+      <td>{{eyecolor}}</td>
+      <td>{{spren}}</td>
+      <td>{{knights_radiant}}</td>
+      <td>
+        <a href="/index/{{id}}">Update</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<h3>No characters in table</h3>
+{{/if}}

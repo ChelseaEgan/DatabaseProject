@@ -1,0 +1,76 @@
+<!-------------------------------
+    NAVIGATION BAR
+-------------------------------->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">The Stormlight Archives</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Characters</a></li>
+      <li><a href="/spren">Spren</a></li>
+      <li class="active"><a href="/knightsradiant">Knights_Radiant</a></li>
+      <li><a href="/surges">Surges</a></li>
+      <li><a href="/performs">Characters Perform Surges</a></li>
+      <li><a href="/associated_with">Knights Radiant Associated With Surges</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-------------------------------
+    ADD NEW KNIGHTS RADIANT
+-------------------------------->
+<h1>Add a new order of the Knights Radiant</h1>
+<form class="form-inline" action="/action_page.php">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name">
+  </div>
+  <div class="form-group">
+    <label for="herald">Herald:</label>
+    <input type="text" class="form-control" id="herald">
+  </div>
+  <div class="form-group">
+    <label for="spren_type">Spren Type:</label>
+    <select class="form-control" id="spren_type">
+      <option>Ashspren</option>
+      <option>Cryptic</option>
+      <option>Cultivationpsren</option>
+      <option>Highspren</option>
+      <option>Inkspren</option>
+      <option>Honorspren</option>
+      <option>Lightspren</option>
+      <option>Other/Unknown</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="submit" form="msform" name="submit" class="submit action-button" value="Submit" />
+  </div>
+</form>
+
+<!-------------------------------
+    LIST ALL KNIGHTS RADIANT
+-------------------------------->
+<h1>All orders of the Knights Radiant</h1>
+{{#if kr}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Herald</th>
+      <th>Spren Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each kr}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{herald}}</td>
+      <td>{{spren_type}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<h3>No Knights Radiant in table</h3>
+{{/if}}
